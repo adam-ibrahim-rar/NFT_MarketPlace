@@ -4,9 +4,13 @@ import SingUp from "./Pages/SingUp";
 import Ranking from "./Pages/Ranking";
 import MarketPlace from "./Pages/MarketPlace";
 import NotFound from "./Pages/NotFound";
+import Header from "./Components/Header";
+import Footer from "./Components/Footer";
+import "./Style/App.css";
 export default function App() {
   return (
-    <BrowserRouter>
+    <BrowserRouter >
+    <Header/>
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/SingUp" element={<SingUp />} />
@@ -14,6 +18,7 @@ export default function App() {
         <Route path="/MarketPlace" element={<MarketPlace />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
+    <Footer/>
     </BrowserRouter>
   );
 }
