@@ -4,5 +4,13 @@
   --color-primary: #a259ff;
   --color-hover-btn: #5b21b6;
   --color-background: #2b2b2b;
+  --color-background-second: #3B3B3B;
+  --color-secondary: #858584;
   --color-card: #3b3b3b;
+}
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus {
+  
+  transition: background-color 5000s ease-in-out 0s;
 }

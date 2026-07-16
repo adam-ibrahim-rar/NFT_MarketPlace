@@ -1,13 +1,10 @@
 import { Link } from "react-router-dom";
-import { RiStore3Line } from "react-icons/ri";
 import SingUpBtn from "./SingUpBtn";
+import Logo from "./Logo";
 export default function Header() {
   return (
-    <div className="p-2 flex justify-around text-white items-center">
-      <Link to="/" className="flex items-center gap-2 w-xs">
-        <RiStore3Line className="text-primary text-4xl" />
-        <h1>NFT Marketplace</h1>
-      </Link>
+    <div className="my-2 p-2 flex justify-around text-white items-center">
+      <Link to="/"><Logo /></Link>
       <ul className="flex gap-5 items-center ">
         <Link to="/MarketPlace">
           <li>MarketPlace</li>
@@ -17,7 +14,7 @@ export default function Header() {
         </Link>
         <Link to="/SingUp">
           <li>
-            <SingUpBtn/>
+            <SingUpBtn />
           </li>
         </Link>
       </ul>
