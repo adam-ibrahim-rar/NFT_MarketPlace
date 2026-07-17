@@ -3,7 +3,7 @@ import liu from "../Images/liu.jpg";
 import { Link } from "react-router-dom";
 export default function Creator(props) {
   return (
-    <Link to={props.Usernameser}>
+    <Link to={"/"+props.Usernameser}>
       <div className="h-[260px] w-[300px] bg-card rounded-3xl p-3 relative flex flex-col justify-around items-center">
         <p className="h-[40px] w-[40px] bg-background absolute  top-4 left-3 rounded-full text-secondary  text-lg flex items-center justify-center">
           {props.number}

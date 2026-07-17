@@ -2,7 +2,7 @@ import React from "react";
 import { MdRocketLaunch } from "react-icons/md";
 import Info from "../Info";
 import User from "../User";
-
+import { Link } from "react-router-dom";
 import liu from "../../Images/liu.jpg";
 import adam from "../../Images/liu.jpg";
 
@@ -20,7 +20,8 @@ export default function HomeFristComponents() {
           sell art from more than 20k NFT artists.
         </p>
 
-        <button
+        <Link to={"/SingUp"}>
+          <button
           className="bg-primary hover:bg-hover-btn transition-all
           flex items-center justify-center gap-2
           py-4 px-8 rounded-2xl capitalize cursor-pointer"
@@ -29,6 +30,7 @@ export default function HomeFristComponents() {
           Get Started
         </button>
 
+        </Link>
         <div className="grid grid-cols-3 pt-4">
           <Info number={240} description="Total Sales" />
           <Info number={100} description="Auctions" />
@@ -52,7 +54,7 @@ export default function HomeFristComponents() {
           <User
             profileImage={adam}
             Username="Animakid"
-            UserProfile="/"
+            
           />
         </div>
 

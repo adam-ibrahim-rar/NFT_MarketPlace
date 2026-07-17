@@ -2,6 +2,7 @@ import React from "react";
 import HomeFristComponents from "../Components/HomeComponents/HomeFristComponents";
 import HomeSecondComponents from "../Components/HomeComponents/HomeSecondComponents";
 import HomeThirdComponents from "../Components/HomeComponents/HomeThirdComponents";
+import HomeForthComponents from "../Components/HomeComponents/HomeForthComponents";
 export default function Home() {
   return (
     
@@ -9,6 +10,7 @@ export default function Home() {
     <HomeFristComponents/>
     <HomeSecondComponents/>
     <HomeThirdComponents/>
+    <HomeForthComponents/>
    </div>
   );
 }
