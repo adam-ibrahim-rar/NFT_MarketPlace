@@ -1,9 +1,14 @@
-import React from 'react'
-
+import React from "react";
+import HomeFristComponents from "../Components/HomeComponents/HomeFristComponents";
+import HomeSecondComponents from "../Components/HomeComponents/HomeSecondComponents";
+import HomeThirdComponents from "../Components/HomeComponents/HomeThirdComponents";
 export default function Home() {
   return (
-    <div>
-      home
-    </div>
-  )
+    
+   <div className="sm:w-6xl sm:mx-auto  my-16 space-y-14" >
+    <HomeFristComponents/>
+    <HomeSecondComponents/>
+    <HomeThirdComponents/>
+   </div>
+  );
 }

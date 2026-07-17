@@ -11,29 +11,29 @@ export default function Footer() {
     console.log(event.target);
   };
   return (
-    <div className=" bg-background-second">
+    <div className=" bg-background-second ">
       {/* 1st */}
       <div className="flex  gap-4 w-6xl mx-auto py-4">
         <ul className="text-lg  flex flex-col gap-4 text-secondary">
-          <li className="text-white">
+          <li className="text-white ">
             <Logo />
           </li>
           <li className="">NFT marketplace UI created with Anima for Figma.</li>
           <li>
             <span>Join our community</span>
           </li>
-          <li className="flex gap-2 text-xl ">
+          <li className="flex gap-2 text-2xl ">
             <Link to="/">
-              <BsGithub />
+              <BsGithub  className="hover:text-white transition-colors duration-100"/>
             </Link>
             <Link to="/">
-              <RiWhatsappLine />
+              <RiWhatsappLine  className="hover:text-white transition-colors duration-100"/>
             </Link>
             <Link to="/">
-              <CiFacebook />
+              <CiFacebook className="hover:text-white transition-colors duration-100" />
             </Link>
             <Link to="/">
-              <IoLogoInstagram />
+              <IoLogoInstagram className="hover:text-white transition-colors duration-100" />
             </Link>
           </li>
         </ul>
@@ -52,7 +52,7 @@ export default function Footer() {
           <li>
             <form
               onSubmit={handleSubmit}
-              className="flex justify-between bg-white w-fit rounded-2xl h-12 w-sm"
+              className="flex justify-between bg-white  rounded-2xl h-12 w-sm"
             >
               <input
                 type="email"
@@ -64,8 +64,8 @@ export default function Footer() {
               />
               <button
                 type="submit"
-                className="bg-primary hover:bg-hover-btn cursor-pointer px-2 rounded-2xl text-white"
-              >
+                className="bg-primary capitalize hover:bg-hover-btn cursor-pointer px-2 rounded-2xl text-white"
+                >
                 subecribe
               </button>
             </form>
