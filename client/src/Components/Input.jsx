@@ -8,20 +8,20 @@ export default function Input({
   ...props
 }) {
   return (
-    <div className="w-[330px] flex flex-col gap-1">
-      <div className="flex items-center h-[46px] bg-white rounded-2xl px-4 gap-3">
-        {Icon && <Icon className="size-4 text-gray-500" />}
+    <div className="w-[330px] flex flex-col gap-1 ">
+      <div className="flex items-center h-[46px] bg-white rounded-2xl px-4 gap-3 shadow-xl/30 shadow-primary ">
+        {Icon && <Icon className="size-4 text-gray-500 " />}
 
         <input
           {...props}
           placeholder={placeholder}
-          className="placeholder:text-background w-full outline-none"
+          className="placeholder:text-background w-full outline-none "
           type={type}
         />
       </div>
 
       {errors && (
-        <span className="text-md font-semibold text-red-900">
+        <span className="text-md font-semibold text-red-700">
           {errors.message}
         </span>
       )}

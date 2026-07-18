@@ -10,7 +10,7 @@ export default function Creator(props) {
         </p>
         <img src={liu} alt="" className="h-[120px] w-[120px] rounded-full " />
 
-        <span className="text-xl h-[58px]  text-center text-white space-y-1">
+        <span className="text-lg h-[58px]  text-center text-white space-y-1">
           <h1 className="font-bold">{props.Username}</h1>
           <p>
             <span className="text-secondary">Total sales:</span>

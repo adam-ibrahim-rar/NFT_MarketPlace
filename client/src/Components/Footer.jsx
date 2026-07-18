@@ -4,11 +4,17 @@ import { BsGithub } from "react-icons/bs";
 import { RiWhatsappLine } from "react-icons/ri";
 import { IoLogoInstagram } from "react-icons/io";
 import { CiFacebook } from "react-icons/ci";
+import { useNavigate } from "react-router-dom";
 
 export default function Footer() {
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    console.log(event.target);
+  const navigate = useNavigate();
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const email = e.target.email.value;
+    navigate("/SingUp", {
+      state: { email },
+    });
+    e.target.reset();
   };
   return (
     <div className=" bg-background-second ">
@@ -24,10 +30,10 @@ export default function Footer() {
           </li>
           <li className="flex gap-2 text-2xl ">
             <Link to="/">
-              <BsGithub  className="hover:text-white transition-colors duration-100"/>
+              <BsGithub className="hover:text-white transition-colors duration-100" />
             </Link>
             <Link to="/">
-              <RiWhatsappLine  className="hover:text-white transition-colors duration-100"/>
+              <RiWhatsappLine className="hover:text-white transition-colors duration-100" />
             </Link>
             <Link to="/">
               <CiFacebook className="hover:text-white transition-colors duration-100" />
@@ -52,21 +58,21 @@ export default function Footer() {
           <li>
             <form
               onSubmit={handleSubmit}
-              className="flex justify-between bg-white  rounded-2xl h-12 w-sm"
+              className="flex justify-between bg-white rounded-2xl h-12 w-sm"
             >
               <input
                 type="email"
                 name="email"
-                placeholder="enter your email"
-                className="placeholder:text-black pl-4 box-border  w-xl
-               outline-none  "
+                placeholder="Enter your email"
+                className="placeholder:text-black pl-4 box-border w-xl outline-none"
                 required
               />
+
               <button
                 type="submit"
                 className="bg-primary capitalize hover:bg-hover-btn cursor-pointer px-2 rounded-2xl text-white"
-                >
-                subecribe
+              >
+                Subscribe
               </button>
             </form>
           </li>

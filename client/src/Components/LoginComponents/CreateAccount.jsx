@@ -1,47 +1,65 @@
-import React from "react";
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
-import Heading from "./Heading";
+import Heading from "../Heading";
 import { CiUser } from "react-icons/ci";
-import Input from "./Input";
+import Input from "../Input";
 import { RiLockPasswordLine } from "react-icons/ri";
 import { HiOutlineMail } from "react-icons/hi";
+import axios from "axios";
+import { Link } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 
 const schema = z
   .object({
-    name: z.string().min(3, "Name must be at least 3 characters"),
+    username: z
+      .string()
+      .min(3, "Name must be at least 3 characters")
+      .max(12, "Name must be at most 12 characters"),
     email: z.string().email("Invalid email"),
     password: z
       .string()
       .min(6, "Must be at least 6")
       .max(12, "Must be at most 12"),
-    confirm_password: z.string(),
+    confirm_password: z.string().nonempty("must not be empty"),
   })
   .refine((data) => data.password === data.confirm_password, {
-  message: "The passwords are different",
-  path: ["confirm_password"],
-});
+    message: "The passwords are different",
+    path: ["confirm_password"],
+  });
 
-export default function SingUpPage() {
+export default function Login({ setform }) {
+  const [submitError, setSubmitError] = useState("");
+  const { state } = useLocation();
+
   const {
     register,
     handleSubmit,
-    formState: { errors },
-    reset
+    formState: { errors, isSubmitting },
+    reset,
   } = useForm({
     resolver: zodResolver(schema),
+    defaultValues: {
+      email: state?.email || "",
+    },
   });
 
-  const onSubmit = (data) => {
-    console.log(data);
-    reset()
+  const onSubmit = async (data) => {
+    try {
+      setSubmitError("");
+      await axios.post("/api/users/new", data);
+      reset();
+      setform(true);
+    } catch (error) {
+      setSubmitError(error.response.data.message);
+    }
   };
 
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
-      className="w-full h-[691px] flex flex-col justify-around py-13   "
+      className="w-full h-[691px] flex flex-col justify-around    "
     >
       <div className="w-[460px]">
         <Heading
@@ -51,14 +69,18 @@ export default function SingUpPage() {
           }
         />
       </div>
-      <div className="flex flex-col gap-8">
+      {submitError && (
+        <span className="text-md font-semibold text-red-700 pl-2">
+          {submitError}
+        </span>
+      )}
+      <div className="flex flex-col gap-6">
         <div className="flex flex-col gap-4">
           <Input
-            {...register("name")}
-            errors={errors.name}
+            {...register("username")}
+            errors={errors.username}
             placeholder={"Name"}
             icon={CiUser}
-
           />
           <Input
             {...register("email")}
@@ -82,16 +104,24 @@ export default function SingUpPage() {
           />
         </div>
         <button
+          disabled={isSubmitting}
           type="submit"
           className="bg-primary
            hover:bg-hover-btn 
              cursor-pointer h-[46px] rounded-2xl 
             text-white
-            w-[330px]"
+            w-[330px]
+            disabled:bg-hover-btn
+            shadow-xl/15 shadow-white
+            "
         >
-          Create account
+          {!isSubmitting ? "Create account" : "Creating..."}
         </button>
       </div>
+      <div className="text-white hover:text-primary ">
+        <button className="cursor-pointer" onClick={() => setform(true)}>have an account?</button>
+      </div>
+
     </form>
   );
 }
