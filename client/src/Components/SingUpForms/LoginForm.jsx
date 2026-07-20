@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { z } from "zod";
@@ -8,8 +8,9 @@ import Input from "../Input";
 import { RiLockPasswordLine } from "react-icons/ri";
 import { HiOutlineMail } from "react-icons/hi";
 import { PiSwordFill } from "react-icons/pi";
-
+import { Link } from "react-router-dom";
 import axios from "axios";
+import { AuthContext } from "../../Context/AuthContext";
 const schema = z.object({
   email: z.string().email("Invalid email"),
   password: z
@@ -18,9 +19,10 @@ const schema = z.object({
     .max(12, "Must be at most 12"),
 });
 
-export default function CreateAccount({ setform }) {
+export default function LoginForm({ setform }) {
   const [submitError, setSubmitError] = useState("");
   const navigate = useNavigate();
+  const { setUser, setLogin } = useContext(AuthContext);
 
   const {
     register,
@@ -34,9 +36,10 @@ export default function CreateAccount({ setform }) {
   const onSubmit = async (data) => {
     try {
       setSubmitError("");
-      const response=await axios.post("/api/users/login", data);
-      // setLogin(true)
-      // setUsername(response.data.user.username)
+      const response = await axios.post("/api/users/login", data);
+      setUser(response.data.user);
+      setLogin(true);
+      localStorage.setItem("user", JSON.stringify(response.data.user));
       navigate("/");
     } catch (error) {
       setSubmitError(error.response.data.message);
@@ -88,7 +91,9 @@ export default function CreateAccount({ setform }) {
         </button>
       </div>
       <div className="text-white hover:text-primary ">
-        <button className="cursor-pointer" onClick={() => setform(false)}>Create an account?</button>
+        <Link to={"/SingUp"}>
+          <button className="cursor-pointer">Create an account?</button>
+        </Link>
       </div>
     </form>
   );

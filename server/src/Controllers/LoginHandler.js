@@ -20,11 +20,11 @@ const LoginHandler = async (req, res) => {
         message: "Wrong password",
       });
     }
-    const access_Token = jwt.sign(
-      { email, user: user.username },
+    const access_token = jwt.sign(
+      { email, username: user.username },
       process.env.JWT_SECKRET_KEY,
     );
-    res.cookie("access_Token", access_Token, { httpOnly: true, secure: true });
+    res.cookie("access_token", access_token, { httpOnly: true});
     res.status(200).json({
       message: "Login successful",
       user,

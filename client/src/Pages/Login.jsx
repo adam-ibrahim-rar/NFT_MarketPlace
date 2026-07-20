@@ -1,8 +1,8 @@
 import React from 'react'
 import SingUpShape from '../Components/SingUpComponents/SingingComponent'
-import CreateAccount from '../Components/SingUpForms/CreateAccount'
+import Login from '../Components/SingUpForms/LoginForm'
 export default function SingUp() {
   return (
-    <SingUpShape form={CreateAccount}/>
+    <SingUpShape form={Login}/>
   )
 }

@@ -1,11 +1,15 @@
 import { Link } from "react-router-dom";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import SingUpBtn from "./SingUpBtn";
 import Logo from "./Logo";
-import {MdOutlinePerson } from "react-icons/md"
+import { MdOutlinePerson } from "react-icons/md";
+import { AuthContext } from "../Context/AuthContext";
+import { CgProfile } from "react-icons/cg";
+
 export default function Header() {
-  const [isLogin, setLogin] = useState(false);
-  // const [username, setUsername] = useState("");
+  const { user } = useContext(AuthContext);
+  const { Login } = useContext(AuthContext);
+
   return (
     <div
       className="my-2 p-2 flex justify-between flex-col sm:flex-row sm:mx-auto
@@ -20,11 +24,19 @@ sm:w-6xl text-white items-center "
         <Link to="/Ranking">
           <li>Ranking</li>
         </Link>
-        <Link to="/SingUp">
-          <li>
-           {isLogin? <SingUpBtn text={username}/> :<SingUpBtn icon={MdOutlinePerson } text={"Sign Up"}/>} 
-          </li>
-        </Link>
+        {Login ? (
+          <Link to="/profile">
+            <li>
+              <SingUpBtn text={user.username} icon={CgProfile} />
+            </li>
+          </Link>
+        ) : (
+          <Link to="/SingUp">
+            <li>
+              <SingUpBtn icon={MdOutlinePerson} text={"Sign Up"} />
+            </li>
+          </Link>
+        )}
       </ul>
     </div>
   );

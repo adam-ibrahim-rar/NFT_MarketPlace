@@ -1,5 +1,7 @@
 import { useState } from "react";
 import { useForm } from "react-hook-form";
+import { useNavigate } from "react-router-dom";
+
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import Heading from "../Heading";
@@ -8,7 +10,7 @@ import Input from "../Input";
 import { RiLockPasswordLine } from "react-icons/ri";
 import { HiOutlineMail } from "react-icons/hi";
 import axios from "axios";
-import { Link } from "react-router-dom";
+import { Link} from "react-router-dom";
 import { useLocation } from "react-router-dom";
 
 const schema = z
@@ -32,6 +34,7 @@ const schema = z
 export default function Login({ setform }) {
   const [submitError, setSubmitError] = useState("");
   const { state } = useLocation();
+  const navigate = useNavigate();
 
   const {
     register,
@@ -49,8 +52,8 @@ export default function Login({ setform }) {
     try {
       setSubmitError("");
       await axios.post("/api/users/new", data);
+      navigate("/login")
       reset();
-      setform(true);
     } catch (error) {
       setSubmitError(error.response.data.message);
     }
@@ -119,7 +122,9 @@ export default function Login({ setform }) {
         </button>
       </div>
       <div className="text-white hover:text-primary ">
-        <button className="cursor-pointer" onClick={() => setform(true)}>have an account?</button>
+        <Link to={"/login"}>
+        <button className="cursor-pointer" >have an account?</button>
+      </Link>
       </div>
 
     </form>
